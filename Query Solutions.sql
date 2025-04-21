@@ -17,24 +17,24 @@ FROM Employees
 WHERE ManagerID IS NULL;
 
 -- 4. Retrieve the highest salary in each department along with the employee’s name.
-'''SELECT e.FirstName, e.LastName, e.Salary, d.DepartmentName
+SELECT e.FirstName, e.LastName, e.Salary, d.DepartmentName
 FROM Employees e
 JOIN Departments d ON e.DepartmentID = d.DepartmentID
 WHERE e.Salary = (
   SELECT MAX(Salary)
   FROM Employees e2
   WHERE e2.DepartmentID = e.DepartmentID
-);'''
+);
 
 -- 5. Find the most recent performance review for each employee.
-'''SELECT pr.EmployeeID, e.FirstName, e.LastName, pr.ReviewDate, pr.PerformanceScore
+SELECT pr.EmployeeID, e.FirstName, e.LastName, pr.ReviewDate, pr.PerformanceScore
 FROM PerformanceReviews pr
 JOIN Employees e ON pr.EmployeeID = e.EmployeeID
 WHERE pr.ReviewDate = (
   SELECT MAX(ReviewDate)
   FROM PerformanceReviews pr2
   WHERE pr2.EmployeeID = pr.EmployeeID
-);'''
+);
 
 -- 6. Count the number of employees in each department.
 SELECT d.DepartmentName, COUNT(e.EmployeeID) AS EmployeeCount
@@ -68,7 +68,6 @@ SELECT FirstName, LastName, Email
 FROM Employees
 WHERE ManagerID = 101;
 
---
 
 
 
